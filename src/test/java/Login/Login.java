@@ -25,12 +25,13 @@ public class Login {
 //    }
 
     @Test
-    public void gotoMailPage(String browser) throws IOException {
+    public void login(String browser) throws IOException {
         String baseUrl = "http://www.gmail.com";
         SingletonWD.getInstance(browser).get(baseUrl);
         LoginPage loginPage = new LoginPage();
         loginPage.validateLoginPagePresence(browser);
         loginPage.login("webdriver2018","2018webdriver",browser);
+        loginPage.submitEntrance(browser);
         MainPage mainPage = new MainPage();
         mainPage.validateMainPagePresence(browser);
         mainPage.clickLogout(browser);
