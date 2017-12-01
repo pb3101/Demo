@@ -1,0 +1,16 @@
+
+Final Demo
+
+1.	Choose any web site which requires authorization: login form should be present, google.com
+2.	Implement 2 positive and 2 negative scenarios, at least one test scenario should have 7 steps: e.g.
+    a.	Open page
+    b.	Login as user
+    c.	Open inbox folder
+    d.	Search for some message
+    e.	Open it
+    f.	Verify that body and subject contains some text
+    g.	Logout
+3.	Run them from command line via Maven and show html report which was generated
+Note: you should use PageObject pattern for your test framework. Any browser can be used (one of IE/FF/Chrome)
+
+
