@@ -9,5 +9,14 @@
                 </methods>
             </class>
         </classes>
+        <classes>
+            <class name="Login.LoginUsingPageFactory">
+                <methods>
+                    <include name="beforeMethod"/>
+                    <include name="test"/>
+                    <include name="afterMethod"/>
+                </methods>
+            </class>
+        </classes>
     </test>
 </suite>

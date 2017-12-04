@@ -11,7 +11,7 @@ import java.io.IOException;
  * Created by pavlo.balyuk on 12/1/2017.
  */
 public class MailBoxSeacrch {
-    // TODO: 12/1/2017 Create one more test with browser setup to skip login throw UI, set up cookies or OAUTH session (to investigate) 
+    // TODO: 12/1/2017 Create one more test with browser setup to skip login throw UI, set up cookies or OAUTH session (to investigate)
     @Test
     public void mailSearch(String browser) throws IOException{
         String baseUrl = "http://www.gmail.com";
