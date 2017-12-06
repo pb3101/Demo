@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.*;
 
+import javax.xml.xpath.XPath;
 import java.io.IOException;
 
 import static org.testng.Assert.assertTrue;
@@ -22,7 +23,6 @@ public class PageFactoryLogin {
     public static WebElement inpt_userName;
 
     @FindBy(how = How.XPATH, using = "//div[@id=\"password\"]//input")
-    @CacheLookup
     public static WebElement inpt_passWord;
 
     @FindBy(how = How.CSS, using = "#identifierNext")
@@ -30,7 +30,6 @@ public class PageFactoryLogin {
     public static WebElement btn_nextToUserName;
 
     @FindBy(how = How.CSS, using = "#passwordNext")
-    @CacheLookup
     public static WebElement btn_nextToPass;
 
     @FindBy(how = How.XPATH, using = "//a[contains(@title, 'Google Account')]")
@@ -41,11 +40,11 @@ public class PageFactoryLogin {
     @CacheLookup
     public static WebElement btn_logOut;
 
+    @FindBy(xpath = "//*[contains(concat( ' ', @class, ' ' ), concat( ' ', 'RxsGPe', ' ' ))]")
+    public static WebElement err_container;
+
     public void clickLogout() throws IOException {
        dropdn_account.click();
        btn_logOut.click();
-    }
-    public void validateLoginPagePresence(String browser) throws IOException {
-        assertTrue(SingletonWD.getInstance(browser).getTitle().contains("Gmail"));
     }
 }

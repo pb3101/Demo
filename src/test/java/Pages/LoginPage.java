@@ -1,8 +1,11 @@
 package Pages;
 
 import WDFactory.SingletonWD;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 
 import java.io.IOException;
 
@@ -12,17 +15,50 @@ import static org.testng.Assert.assertTrue;
  * Created by pavlo.balyuk on 12/1/2017.
  */
 public class LoginPage{
-    public void login(String userName, String password, String browser) throws IOException {
-        SingletonWD.getInstance(browser).findElement(By.cssSelector("#identifierId")).clear();
-        SingletonWD.getInstance(browser).findElement(By.cssSelector("#identifierId")).sendKeys(userName);
-        SingletonWD.getInstance(browser).findElement(By.xpath("//div[@id=\"password\"]//input")).clear();
-        SingletonWD.getInstance(browser).findElement(By.xpath("//div[@id=\"password\"]//input")).sendKeys(password);
+
+    private static WebDriver driver;
+
+    @FindBy(how = How.CSS, using = "#identifierId")
+    @CacheLookup
+    public static WebElement inpt_userName;
+
+    @FindBy(how = How.XPATH, using = "//div[@id=\"password\"]//input")
+    public static WebElement inpt_passWord;
+
+    @FindBy(how = How.CSS, using = "#identifierNext")
+    @CacheLookup
+    public static WebElement btn_nextToUserName;
+
+    @FindBy(how = How.CSS, using = "#passwordNext")
+    public static WebElement btn_nextToPass;
+
+    @FindBy(how = How.XPATH, using = "//a[contains(@title, 'Google Account')]")
+    @CacheLookup
+    public static WebElement dropdn_account;
+
+    @FindBy(how = How.LINK_TEXT, using = "Sign out")
+    @CacheLookup
+    public static WebElement btn_logOut;
+
+    public void enterUserName (String userName) throws IOException {
+        inpt_userName.sendKeys(userName);
+        this.submitEntrance();
     }
-    public void submitEntrance(String browser) throws IOException {
-        SingletonWD.getInstance(browser).findElement(By.cssSelector("#identifierNext")).click();
-        SingletonWD.getInstance(browser).findElement(By.cssSelector("#passwordNext")).click();
+
+    public void enterPassWord (String passWord) throws IOException {
+        inpt_passWord.sendKeys(passWord);
+        this.submitEntrance();
     }
-    public void validateLoginPagePresence(String browser) throws IOException {
-        assertTrue(SingletonWD.getInstance(browser).getTitle().contains("Gmail"));
+    public void submitEntrance() throws IOException {
+        btn_nextToUserName.click();
+        btn_nextToPass.click();
+    }
+    public void validateLoginPagePresence() throws IOException {
+        assertTrue(driver.getTitle().contains("Gmail"));
+    }
+
+    public void clickLogout() {
+        dropdn_account.click();
+        btn_logOut.click();
     }
 }

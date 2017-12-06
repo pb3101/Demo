@@ -12,6 +12,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class SingletonWD {
 
+    private static String firefoxDriverPath =  "D:\\Selenium Tests\\geckodriver-v0.19.1-win32\\geckodriver.exe";
+
+    private static String chromeDriverPath = "D:\\TestNG\\src\\main\\resources\\drivers\\chrome\\chromedriver\\chromedriver.exe";
+
     private static WebDriver driver;
 
     private SingletonWD() {
@@ -21,10 +25,10 @@ public class SingletonWD {
     public static synchronized WebDriver getInstance(String browser) throws IOException {
         if (driver == null) {
             if (browser.equals("firefox")) {
-                System.setProperty("webdriver.gecko.driver", "D:\\Selenium Tests\\geckodriver-v0.19.1-win32\\geckodriver.exe");
+                System.setProperty("webdriver.gecko.driver", firefoxDriverPath);
                 driver = new FirefoxDriver();
             } else if (browser.equals("chrome")) {
-                System.setProperty("webdriver.chrome.driver", "D:\\TestNG\\src\\main\\resources\\drivers\\chrome\\chromedriver\\chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", chromeDriverPath);
                 driver = new ChromeDriver();
             } else {
                 throw new UnsupportedOperationException("Unknown browser " + browser);
