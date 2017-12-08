@@ -1,5 +1,6 @@
 package MailBox;
 
+import Pages.LetterPage;
 import Pages.LoginPage;
 import Pages.MainPage;
 import WDFactory.SingletonWD;
@@ -28,6 +29,8 @@ public class MailBoxSeacrch {
 
     LoginPage LoginPage;
 
+    LetterPage LetterPage;
+
     @BeforeMethod
     public void BeforeTest() {
 
@@ -42,6 +45,8 @@ public class MailBoxSeacrch {
         MainPage = PageFactory.initElements(driver, MainPage.class);
 
         LoginPage = PageFactory.initElements(driver, LoginPage.class);
+
+        LetterPage = PageFactory.initElements(driver, LetterPage.class);
 
     }
 
@@ -67,7 +72,7 @@ public class MailBoxSeacrch {
         wait.until(ExpectedConditions.visibilityOf(MainPage.btn_Search));
         MainPage.ltr_Entry.click();
         MainPage.dropdn_account.click();
-        Assert.assertTrue(driver.getTitle().contentEquals("Three tips to get the most out of Gmail"));
+        Assert.assertTrue(LetterPage.ltr_Subject.getText().contains("Three tips to get the most out of Gmail"));
         MainPage.btn_logOut.click();
     }
 

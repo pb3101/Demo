@@ -21,8 +21,6 @@ public class MainPage{
 
     public String ltr_Subject = "Three tips to get the most out of Gmail";
 
-    public String lrt_Body = "";
-
     @FindBy(how = How.XPATH, using = "//*[@id='gbqfq']")
     public static WebElement src_Input;
 
@@ -38,7 +36,7 @@ public class MainPage{
     @CacheLookup
     public static WebElement btn_Search;
 
-    @FindBy(how = How.XPATH, using = "//span[contains(text(), 'Three tips to get the most out of Gmail')]") //*[@id=":2"]/div/div/div[4]
+    @FindBy(how = How.XPATH, using = "//*table/table/span[contains(text(), 'Three tips to get the most out of Gmail')]") //*[@id=":2"]/div/div/div[4]
     @CacheLookup
     public static WebElement ltr_Entry;
 }
