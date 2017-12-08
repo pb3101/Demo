@@ -1,7 +1,7 @@
 package Login;
 
 import Pages.MainPage;
-import Pages.PageFactoryLogin;
+import Pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -21,11 +21,11 @@ import java.util.concurrent.TimeUnit;
 public class LoginWrongPassword {
     static WebDriver driver;
 
-    MainPage HomePage;
+    MainPage MainPage;
 
-    PageFactoryLogin LoginPageFactory;
+    LoginPage LoginPage;
 
-    @BeforeTest
+    @BeforeMethod
 
     public void beforeMethod() {
 
@@ -37,9 +37,8 @@ public class LoginWrongPassword {
 
         driver.get("http://gmail.com");
 
-        HomePage = PageFactory.initElements(driver, MainPage.class);
 
-        LoginPageFactory = PageFactory.initElements(driver, PageFactoryLogin.class);
+        LoginPage = PageFactory.initElements(driver, LoginPage.class);
 
     }
 
@@ -52,17 +51,17 @@ public class LoginWrongPassword {
 
     @Test(dataProvider = "credentials")
 
-    public void test(String userName, String passWord) throws IOException {
+    public void login(String userName, String passWord) throws IOException {
         WebDriverWait wait = new WebDriverWait(driver,3);
 
-            LoginPageFactory.inpt_userName.sendKeys(userName);
-            LoginPageFactory.btn_nextToUserName.click();
+        LoginPage.inpt_userName.sendKeys(userName);
+        LoginPage.btn_nextToUserName.click();
         try {
-            LoginPageFactory.inpt_passWord.sendKeys(passWord);
-            wait.until(ExpectedConditions.elementToBeClickable(LoginPageFactory.btn_nextToPass));
-            LoginPageFactory.btn_nextToPass.click();
-            wait.until(ExpectedConditions.visibilityOf(LoginPageFactory.btn_nextToPass));
-            String err_text = LoginPageFactory.err_container.getText();
+            LoginPage.inpt_passWord.sendKeys(passWord);
+            wait.until(ExpectedConditions.elementToBeClickable(LoginPage.btn_nextToPass));
+            LoginPage.btn_nextToPass.click();
+            wait.until(ExpectedConditions.visibilityOf(LoginPage.btn_nextToPass));
+            String err_text = LoginPage.err_container.getText();
             Assert.assertTrue(err_text.contains(err_text),"Wrong password. Try again or click Forgot password to reset it.");
             System.out.println("Wrong password input");
 
@@ -72,7 +71,7 @@ public class LoginWrongPassword {
         }
     }
 
-    @AfterTest
+    @AfterMethod
 
     public void afterMethod() {
 

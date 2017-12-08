@@ -3,6 +3,10 @@ package Pages;
 import WDFactory.SingletonWD;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;
@@ -14,44 +18,27 @@ import static org.testng.Assert.assertTrue;
  */
 public class MainPage{
     private WebDriver driver;
-    public void mainPage(String browser) throws IOException {
-        // TODO: 12/1/2017 all objects need review, only structure implemented.
-        SingletonWD.getInstance(browser).findElements(By.xpath("//*[@id='table']/tbody/tr[3]/td[3]"));
-        // 50 mails on page table contains subject text good idea
-        // "//*table[contains(@name, "doo Buchung")]/tbody/tr{2}/td[5]"
-        SingletonWD.getInstance(browser).findElement(By.xpath("//*[@id=':io']")); //prev mail page
-        SingletonWD.getInstance(browser).findElement(By.xpath("//*[@id=':in']")); //next mail page
-        SingletonWD.getInstance(browser).findElement(By.xpath("//*[@id=':iw']")); //full left side menu open
-    }
 
-    // TODO: 12/1/2017 try to handle case when correct letter not on 1st page 
-    public void letterSearch(String browser) throws IOException {
-        try {
-            SingletonWD.getInstance(browser).findElement(By.xpath("//*table[contains(@text, 'Three tips to get the most out of Gmail')]"));
-        } catch (NoSuchElementException notFound) {
-            System.out.println("No letter found");
-        }
-    }
+    public String ltr_Subject = "Three tips to get the most out of Gmail";
 
-    public void letterOpen(String browser) throws IOException {
-        SingletonWD.getInstance(browser).findElement(By.xpath("//*table[contains(@text, 'Three tips to get the most out of Gmail')]")).click();
-    }
+    public String lrt_Body = "";
 
-    public void validateMailSubjectAndText(String browser) throws IOException {
-        assertTrue(SingletonWD.getInstance(browser).getTitle().contentEquals("Hi webdriver"));
-    }
+    @FindBy(how = How.XPATH, using = "//*[@id='gbqfq']")
+    public static WebElement src_Input;
 
-    public void clickLogout(String browser) throws IOException {
-        SingletonWD.getInstance(browser).findElement(By.xpath("//a[contains(@title, 'Google Account')]")).click();
-        SingletonWD.getInstance(browser).findElement(By.linkText("Sign out")).click();
-    }
+    @FindBy(how = How.XPATH, using = "//a[contains(@title, 'Google Account')]")
+    @CacheLookup
+    public static WebElement dropdn_account;
 
-    public void validateMainPagePresence(String browser) throws IOException {
-        assertTrue(SingletonWD.getInstance(browser).getCurrentUrl().contains("https://mail.google.com/mail/u/0/#inbox"));
-    }
+    @FindBy(how = How.LINK_TEXT, using = "Sign out")
+    @CacheLookup
+    public static WebElement btn_logOut;
 
-    public void clickLogout() {
-        driver.findElement(By.xpath("//a[contains(@title, 'Google Account')]")).click();
-        driver.findElement(By.linkText("Sign out")).click();
-    }
+    @FindBy(how = How.XPATH, using = "//*[@id='gbqfb']")
+    @CacheLookup
+    public static WebElement btn_Search;
+
+    @FindBy(how = How.XPATH, using = "//span[contains(text(), 'Three tips to get the most out of Gmail')]") //*[@id=":2"]/div/div/div[4]
+    @CacheLookup
+    public static WebElement ltr_Entry;
 }

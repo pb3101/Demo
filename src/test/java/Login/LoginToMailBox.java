@@ -5,8 +5,9 @@ import Pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -15,18 +16,20 @@ import java.util.concurrent.TimeUnit;
 import static org.testng.Assert.assertTrue;
 
 /**
- * Created by pavlo.balyuk on 12/1/2017.
+ * Created by pavlo.balyuk on 12/4/2017.
  */
-public class LoginWrongUserName {
+//mvn -Dtest=LoginToMailBox test
+public class LoginToMailBox {
+
     static WebDriver driver;
 
-    MainPage MainPage;
+    MainPage HomePage;
 
     LoginPage LoginPage;
 
     @BeforeMethod
 
-    public void beforeMethod() {
+    public void BeforeTest() {
 
         System.setProperty("webdriver.chrome.driver", "D:\\TestNG\\src\\main\\resources\\drivers\\chrome\\chromedriver\\chromedriver.exe");
 
@@ -43,22 +46,21 @@ public class LoginWrongUserName {
     @DataProvider(name = "credentials")
     public static Object[][] createData() {
         return new Object[][]{
-                {"incorrectUserName", "2018webdriver"},
+                {"webdriver2018", "2018webdriver"},
         };
     }
 
     @Test(dataProvider = "credentials")
 
     public void login(String userName, String passWord) throws IOException {
-
-        try {
-            LoginPage.inpt_userName.sendKeys(userName);
-            LoginPage.btn_nextToUserName.click();
-            String err_text = LoginPage.err_container.getText();
-            Assert.assertTrue(err_text.contains(err_text), "Couldn't find your Google Account");
-        } catch (Exception err_userName) {
-            System.out.println("Wrong username input");
-        }
+        LoginPage.inpt_userName.sendKeys(userName);
+        LoginPage.btn_nextToUserName.click();
+        LoginPage.inpt_passWord.sendKeys(passWord);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(LoginPage.btn_nextToPass));
+        LoginPage.btn_nextToPass.click();
+        System.out.println(" Login Successfully, now it is the time to Log Off buddy.");
+        LoginPage.dropdn_account.click();
+        LoginPage.btn_logOut.click();
     }
 
     @AfterMethod
@@ -70,3 +72,4 @@ public class LoginWrongUserName {
     }
 
 }
+
