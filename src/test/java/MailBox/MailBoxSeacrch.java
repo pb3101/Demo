@@ -32,7 +32,7 @@ public class MailBoxSeacrch {
     LetterPage LetterPage;
 
     @BeforeMethod
-    public void BeforeTest() {
+    public void beforeMethod() {
 
         System.setProperty("webdriver.chrome.driver", "D:\\TestNG\\src\\main\\resources\\drivers\\chrome\\chromedriver\\chromedriver.exe");
 

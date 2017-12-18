@@ -2,6 +2,7 @@ package WDFactory;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.IOException;
@@ -17,8 +18,8 @@ public class Setup {
     public void beforeSuite() throws IOException {
         driver = SingletonWD.getInstance("chrome");
     }
-    @AfterMethod
-    public void afterMethod(){
+    @AfterSuite
+    public void afterSuite(){
         SingletonWD.killInstance();
     }
 }
