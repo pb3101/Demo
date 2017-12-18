@@ -1,22 +1,13 @@
 package Pages;
 
-import WDFactory.SingletonWD;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
-
-import java.io.IOException;
-import java.util.NoSuchElementException;
-
-import static org.testng.Assert.assertTrue;
+import org.openqa.selenium.support.*;
 
 /**
  * Created by pavlo.balyuk on 12/1/2017.
  */
-public class MainPage{
+public class MainPage {
     private WebDriver driver;
 
     public String ltr_Subject = "Three tips to get the most out of Gmail";

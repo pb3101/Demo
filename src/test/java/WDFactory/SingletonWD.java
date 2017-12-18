@@ -34,6 +34,7 @@ public class SingletonWD {
                 throw new UnsupportedOperationException("Unknown browser " + browser);
             }
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            driver.manage().window().maximize();
         }
         return driver;
     }

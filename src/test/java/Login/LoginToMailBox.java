@@ -1,22 +1,15 @@
 package Login;
 
-import Pages.MainPage;
 import Pages.LoginPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.*;
+import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
-import static org.testng.Assert.assertTrue;
 
 /**
  * Created by pavlo.balyuk on 12/4/2017.
@@ -25,8 +18,6 @@ import static org.testng.Assert.assertTrue;
 public class LoginToMailBox {
 
     static WebDriver driver;
-
-    MainPage HomePage;
 
     LoginPage LoginPage;
 
@@ -57,7 +48,6 @@ public class LoginToMailBox {
         wait.until(ExpectedConditions.elementToBeClickable(LoginPage.btn_nextToPass));
         LoginPage.btn_nextToPass.click();
         wait.until(ExpectedConditions.visibilityOf(LoginPage.btn_nextToPass));
-        System.out.println(" Login Successfully, now it is the time to Log Off buddy.");
         LoginPage.dropdn_account.click();
         Assert.assertTrue(LoginPage.acc_Email.getAttribute("href").equals("https://myaccount.google.com/?utm_source=OGB&utm_medium=act"));
     }

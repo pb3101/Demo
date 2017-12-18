@@ -11,8 +11,8 @@ Final Demo
     f.	Verify that body and subject contains some text
     g.	Logout
 3.	Run them from command line via Maven and show html report which was generated
+
+mvn test -Dsurefire.suiteXmlFiles=src/main/resources/testng.xml
+
+
 Note: you should use PageObject pattern for your test framework. Any browser can be used (one of IE/FF/Chrome)
-
-
-
-
