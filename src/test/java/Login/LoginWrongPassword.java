@@ -53,9 +53,9 @@ public class LoginWrongPassword {
         LoginPage.inpt_userName.sendKeys(userName);
         LoginPage.btn_nextToUserName.click();
         LoginPage.inpt_passWord.sendKeys(passWord);
+        wait.until(ExpectedConditions.visibilityOf(LoginPage.btn_nextToPass));
         wait.until(ExpectedConditions.elementToBeClickable(LoginPage.btn_nextToPass));
         LoginPage.btn_nextToPass.click();
-        wait.until(ExpectedConditions.visibilityOf(LoginPage.btn_nextToPass));
         String err_text = LoginPage.err_container.getText();
         Assert.assertTrue(err_text.contains(err_text), "Wrong password. Try again or click Forgot password to reset it.");
     }

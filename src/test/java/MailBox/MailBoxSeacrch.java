@@ -63,9 +63,9 @@ public class MailBoxSeacrch {
         LoginPage.inpt_userName.sendKeys(userName);
         LoginPage.btn_nextToUserName.click();
         LoginPage.inpt_passWord.sendKeys(passWord);
+        wait.until(ExpectedConditions.visibilityOf(LoginPage.btn_nextToPass));
         wait.until(ExpectedConditions.elementToBeClickable(LoginPage.btn_nextToPass));
         LoginPage.btn_nextToPass.click();
-        wait.until(ExpectedConditions.visibilityOf(LoginPage.btn_nextToPass));
         MainPage.src_Input.sendKeys(MainPage.ltr_Subject);
         wait.until(ExpectedConditions.elementToBeClickable(MainPage.btn_Search));
         MainPage.btn_Search.click();

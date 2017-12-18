@@ -45,9 +45,9 @@ public class LoginToMailBox {
         LoginPage.inpt_userName.sendKeys(userName);
         LoginPage.btn_nextToUserName.click();
         LoginPage.inpt_passWord.sendKeys(passWord);
+        wait.until(ExpectedConditions.visibilityOf(LoginPage.btn_nextToPass));
         wait.until(ExpectedConditions.elementToBeClickable(LoginPage.btn_nextToPass));
         LoginPage.btn_nextToPass.click();
-        wait.until(ExpectedConditions.visibilityOf(LoginPage.btn_nextToPass));
         LoginPage.dropdn_account.click();
         Assert.assertTrue(LoginPage.acc_Email.getAttribute("href").equals("https://myaccount.google.com/?utm_source=OGB&utm_medium=act"));
     }
