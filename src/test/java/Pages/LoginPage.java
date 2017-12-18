@@ -31,10 +31,9 @@ public class LoginPage {
     @CacheLookup
     public static WebElement dropdn_account;
 
-    @FindBy(how = How.LINK_TEXT, using = "Sign out")
-    @CacheLookup
-    public static WebElement btn_logOut;
-
     @FindBy(xpath = "//*[contains(concat( ' ', @class, ' ' ), concat( ' ', 'RxsGPe', ' ' ))]")
     public static WebElement err_container;
+
+    @FindBy(how = How.XPATH, using = "//a[contains(@href, 'https://myaccount.google.com/?utm_source=OGB&utm_medium=act')]")
+    public static WebElement acc_Email;
 }

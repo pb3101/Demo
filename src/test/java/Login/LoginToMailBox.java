@@ -2,12 +2,15 @@ package Login;
 
 import Pages.MainPage;
 import Pages.LoginPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -43,32 +46,27 @@ public class LoginToMailBox {
 
     }
 
-    @DataProvider(name = "credentials")
-    public static Object[][] createData() {
-        return new Object[][]{
-                {"webdriver2018", "2018webdriver"},
-        };
-    }
-
-    @Test(dataProvider = "credentials")
+    @Parameters({"userName", "passWord"})
+    @Test
 
     public void login(String userName, String passWord) throws IOException {
+        WebDriverWait wait = new WebDriverWait(driver, 3);
         LoginPage.inpt_userName.sendKeys(userName);
         LoginPage.btn_nextToUserName.click();
         LoginPage.inpt_passWord.sendKeys(passWord);
-        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(LoginPage.btn_nextToPass));
+        wait.until(ExpectedConditions.elementToBeClickable(LoginPage.btn_nextToPass));
         LoginPage.btn_nextToPass.click();
+        wait.until(ExpectedConditions.visibilityOf(LoginPage.btn_nextToPass));
         System.out.println(" Login Successfully, now it is the time to Log Off buddy.");
         LoginPage.dropdn_account.click();
-        LoginPage.btn_logOut.click();
+        Assert.assertTrue(LoginPage.acc_Email.getAttribute("href").equals("https://myaccount.google.com/?utm_source=OGB&utm_medium=act"));
     }
 
     @AfterMethod
 
     public void afterMethod() {
-
         driver.quit();
-
+        driver = null;
     }
 
 }

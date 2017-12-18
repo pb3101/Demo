@@ -36,7 +36,6 @@ public class MainPage{
     @CacheLookup
     public static WebElement btn_Search;
 
-    @FindBy(how = How.XPATH, using = "//*table/table/span[contains(text(), 'Three tips to get the most out of Gmail')]") //*[@id=":2"]/div/div/div[4]
-    @CacheLookup
+    @FindBy(how = How.XPATH, using = "//span/b[contains(text(), 'Three')]/parent::span/../span[contains(text(), 'Three tips to get the most out of Gmail')]")
     public static WebElement ltr_Entry;
 }

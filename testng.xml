@@ -1,2 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="D:/Demo/src/test/java"><classes><class name="Login.LoginToMailBox"><methods><include name="login"/></methods></class><class name="Login.LoginWrongPassword"><methods><include name="login"/></methods></class><class name="Login.LoginWrongUserName"><methods><include name="login"/></methods></class><class name="MailBox.MailBoxSeacrch"><methods><include name="mailSearch"/></methods></class></classes></test></suite>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="D:/Demo/src/test/java">
+        <parameter name="userName" value="webdriver2018"/>
+        <parameter name="passWord" value="2018webdriver"/>
+        <classes>
+            <class name="Login.LoginToMailBox">
+                <methods>
+                    <include name="login"/>
+                </methods>
+            </class>
+            <class name="Login.LoginWrongPassword">
+                <methods>
+                    <include name="login"/>
+                </methods>
+            </class>
+            <class name="Login.LoginWrongUserName">
+                <methods>
+                    <include name="login"/>
+                </methods>
+            </class>
+            <class name="MailBox.MailBoxSeacrch">
+                <methods>
+                    <include name="mailSearch"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

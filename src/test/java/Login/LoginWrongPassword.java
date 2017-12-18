@@ -52,31 +52,23 @@ public class LoginWrongPassword {
     @Test(dataProvider = "credentials")
 
     public void login(String userName, String passWord) throws IOException {
-        WebDriverWait wait = new WebDriverWait(driver,3);
+        WebDriverWait wait = new WebDriverWait(driver, 3);
 
         LoginPage.inpt_userName.sendKeys(userName);
         LoginPage.btn_nextToUserName.click();
-        try {
-            LoginPage.inpt_passWord.sendKeys(passWord);
-            wait.until(ExpectedConditions.elementToBeClickable(LoginPage.btn_nextToPass));
-            LoginPage.btn_nextToPass.click();
-            wait.until(ExpectedConditions.visibilityOf(LoginPage.btn_nextToPass));
-            String err_text = LoginPage.err_container.getText();
-            Assert.assertTrue(err_text.contains(err_text),"Wrong password. Try again or click Forgot password to reset it.");
-            System.out.println("Wrong password input");
-
-        }
-        catch (Exception err_passWord){
-            System.out.println("Wrong password input");
-        }
+        LoginPage.inpt_passWord.sendKeys(passWord);
+        wait.until(ExpectedConditions.elementToBeClickable(LoginPage.btn_nextToPass));
+        LoginPage.btn_nextToPass.click();
+        wait.until(ExpectedConditions.visibilityOf(LoginPage.btn_nextToPass));
+        String err_text = LoginPage.err_container.getText();
+        Assert.assertTrue(err_text.contains(err_text), "Wrong password. Try again or click Forgot password to reset it.");
     }
 
     @AfterMethod
 
     public void afterMethod() {
-
         driver.quit();
-
+        driver = null;
     }
 
 }

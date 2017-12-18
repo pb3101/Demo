@@ -64,9 +64,8 @@ public class LoginWrongUserName {
     @AfterMethod
 
     public void afterMethod() {
-
         driver.quit();
-
+        driver = null;
     }
 
 }

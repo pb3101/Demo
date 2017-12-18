@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class SingletonWD {
 
-    private static String firefoxDriverPath =  "D:\\Selenium Tests\\geckodriver-v0.19.1-win32\\geckodriver.exe";
+    private static String firefoxDriverPath = "D:\\Selenium Tests\\geckodriver-v0.19.1-win32\\geckodriver.exe";
 
     private static String chromeDriverPath = "D:\\TestNG\\src\\main\\resources\\drivers\\chrome\\chromedriver\\chromedriver.exe";
 
@@ -36,5 +36,10 @@ public class SingletonWD {
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         }
         return driver;
+    }
+
+    public static void killInstance(){
+        driver.quit();
+        driver = null;
     }
 }

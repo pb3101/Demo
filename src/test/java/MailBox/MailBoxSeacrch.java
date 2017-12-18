@@ -58,28 +58,27 @@ public class MailBoxSeacrch {
     }
 
     @Test(dataProvider = "credentials")
-    public void mailSearch(String userName, String passWord) throws IOException{
+    public void mailSearch(String userName, String passWord) throws IOException {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         LoginPage.inpt_userName.sendKeys(userName);
         LoginPage.btn_nextToUserName.click();
         LoginPage.inpt_passWord.sendKeys(passWord);
         wait.until(ExpectedConditions.elementToBeClickable(LoginPage.btn_nextToPass));
         LoginPage.btn_nextToPass.click();
-        System.out.println(" Login Successfully");
+        wait.until(ExpectedConditions.visibilityOf(LoginPage.btn_nextToPass));
         MainPage.src_Input.sendKeys(MainPage.ltr_Subject);
         wait.until(ExpectedConditions.elementToBeClickable(MainPage.btn_Search));
         MainPage.btn_Search.click();
         wait.until(ExpectedConditions.visibilityOf(MainPage.btn_Search));
         MainPage.ltr_Entry.click();
+        Assert.assertTrue((LetterPage.ltr_Subject.getText().contains("Three tips to get the most out of Gmail")) && (LetterPage.lrt_Body_Part.getText().contains("Bring your contacts and mail into Gmail")));
         MainPage.dropdn_account.click();
-        Assert.assertTrue(LetterPage.ltr_Subject.getText().contains("Three tips to get the most out of Gmail"));
         MainPage.btn_logOut.click();
     }
 
     @AfterMethod
     public void afterMethod() {
-
         driver.quit();
-
+        driver = null;
     }
 }
