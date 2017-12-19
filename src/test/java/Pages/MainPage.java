@@ -8,7 +8,8 @@ import org.openqa.selenium.support.*;
  * Created by pavlo.balyuk on 12/1/2017.
  */
 public class MainPage {
-    private WebDriver driver;
+
+    public MainPage (WebDriver driver){PageFactory.initElements(driver, this);}
 
     public String ltr_Subject = "Three tips to get the most out of Gmail";
 

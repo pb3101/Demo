@@ -3,7 +3,6 @@ package Login;
 import Pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -30,7 +29,7 @@ public class LoginWrongUserName {
 
         driver.get("http://gmail.com");
 
-        LoginPage = PageFactory.initElements(driver, LoginPage.class);
+        LoginPage = new LoginPage(driver);
 
     }
 

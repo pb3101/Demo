@@ -9,7 +9,7 @@ import org.openqa.selenium.support.*;
  */
 public class LetterPage {
 
-    private WebDriver driver;
+    public LetterPage (WebDriver driver) {PageFactory.initElements(driver, this);}
 
     @FindBy(how = How.XPATH, using = "//span[contains(text(),'Three')]//ancestor::h2")
     public static WebElement ltr_Subject;

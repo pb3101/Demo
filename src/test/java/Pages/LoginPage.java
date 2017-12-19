@@ -11,7 +11,7 @@ import org.openqa.selenium.support.*;
  */
 public class LoginPage {
 
-    static WebDriver driver;
+    public LoginPage (WebDriver driver){PageFactory.initElements(driver, this);}
 
     @FindBy(how = How.CSS, using = "#identifierId")
     @CacheLookup

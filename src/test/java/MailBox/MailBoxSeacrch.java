@@ -3,21 +3,17 @@ package MailBox;
 import Pages.LetterPage;
 import Pages.LoginPage;
 import Pages.MainPage;
-import WDFactory.SingletonWD;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import org.testng.reporters.jq.Main;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import static org.testng.Assert.assertTrue;
+
 
 /**
  * Created by pavlo.balyuk on 12/1/2017.
@@ -42,11 +38,11 @@ public class MailBoxSeacrch {
 
         driver.get("http://gmail.com");
 
-        MainPage = PageFactory.initElements(driver, MainPage.class);
+        MainPage = new MainPage(driver);
 
-        LoginPage = PageFactory.initElements(driver, LoginPage.class);
+        LoginPage = new LoginPage(driver);
 
-        LetterPage = PageFactory.initElements(driver, LetterPage.class);
+        LetterPage = new LetterPage(driver);
 
     }
 
