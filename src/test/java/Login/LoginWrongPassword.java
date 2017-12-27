@@ -33,8 +33,7 @@ public class LoginWrongPassword {
 
         driver.get("http://gmail.com");
 
-
-        LoginPage = PageFactory.initElements(driver, LoginPage.class);
+        LoginPage = new LoginPage(driver);
 
     }
 
@@ -49,12 +48,11 @@ public class LoginWrongPassword {
 
     public void login(String userName, String passWord) throws IOException {
         WebDriverWait wait = new WebDriverWait(driver, 3);
-
         LoginPage.inpt_userName.sendKeys(userName);
         LoginPage.btn_nextToUserName.click();
         LoginPage.inpt_passWord.sendKeys(passWord);
         wait.until(ExpectedConditions.visibilityOf(LoginPage.btn_nextToPass));
-        wait.until(ExpectedConditions.elementToBeClickable(LoginPage.btn_nextToPass));
+        wait.until(ExpectedConditions.elementToBeClickable(LoginPage.btn_nextToPass)); // TODO: 12/19/2017 improve pageobjects with methods that hanble all this waits mvn archetype:generate -Dfilter=serenity
         LoginPage.btn_nextToPass.click();
         String err_text = LoginPage.err_container.getText();
         Assert.assertTrue(err_text.contains(err_text), "Wrong password. Try again or click Forgot password to reset it.");
